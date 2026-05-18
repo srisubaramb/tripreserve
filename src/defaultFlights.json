@@ -1,0 +1,24 @@
+{
+	"data" : [
+        {
+            "flight_number": "7185",
+            "link": "",
+            "origin_airport": "MAA",
+            "destination_airport": "IXM",
+            "departure_at": "",
+            "airline": "6E",
+            "destination": "IXM",
+            "origin": "MAA",
+            "price": 2500,
+            "gate": "Trip.com",
+            "return_transfers": 0,
+            "duration": 85,
+            "duration_to": 85,
+            "duration_back": 0,
+            "transfers": 0
+        }
+        
+    ],
+    "currency": "inr",
+    "success": true
+}

@@ -6,7 +6,9 @@
 	--font-poppins: "Poppins", sans-serif;
 	--font-roboto: "Roboto Mono", monospace;
 	--font-arial : "Arial", sans-serif;
+	--color-primary: #ffd600;
 }
 body {
 	background-color: #f5f6f7;
+	font-family: "League Spartan", sans-serif;
 }

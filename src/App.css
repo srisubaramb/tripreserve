@@ -1,0 +1,15 @@
+/* Ensure the input itself has relative positioning so the absolute icon stays inside */
+input[type="month"] {
+	position: relative;
+}
+
+/* Stretch and hide the calendar icon */
+input[type="month"]::-webkit-calendar-picker-indicator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
