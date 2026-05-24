@@ -11,7 +11,7 @@ function Home() {
 	}
 	return (
 		<>
-			<section className="mt-2 px-2">
+			<section className="px-2">
 				<div className="bg-[url('/sky-bg.png')] h-[70vh] bg-cover rounded-xl flex items-center justify-center">
 					<div className="bg-white h-[75%] w-[95%] rounded-xl flex justify-between max-w-[1200px] p-3 relative">
 						<div className="flex flex-col justify-between">

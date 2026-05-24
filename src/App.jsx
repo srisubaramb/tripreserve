@@ -6,12 +6,23 @@ import Search from './Search';
 import Fav from './Fav'
 import Help from './Help';
 import SignUp from './Signup';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Login from './Login';
 import About from './About';
+import Profile from './Profile';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUsers } from './userSlice';
 export const AuthContext = createContext(false)
 function App() {
 	const [isAuth, setIsAuth] = useState(false)
+	const dispatch = useDispatch()
+	const users = useSelector(state => state.users.users)
+	useEffect(() => {
+		localStorage.setItem('users', JSON.stringify(users))
+	} , [users])
+	useEffect(() => {
+		dispatch(setUsers(JSON.parse(localStorage.getItem('users')) || []))
+	} , [])
   return (
     <>
 		<BrowserRouter >
@@ -23,6 +34,7 @@ function App() {
 						<Route path='/search-flights' element={<Search/>} />
 						<Route path='/saved-flights' element={<Fav />} />
 						<Route path='/help' element={<Help/>} />
+						<Route path='/dashboard' element={<Profile />}></Route>
 						<Route path='/signup' element={<SignUp />} />
 						<Route path='/login' element={<Login />}></Route>
 				</Routes>

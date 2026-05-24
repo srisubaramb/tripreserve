@@ -23,7 +23,7 @@ function Login() {
 		const foundUser = users.find(user => user.email === email)
 
 		if (!foundUser) {
-			showStatus( 'Username not found', false)
+			showStatus( 'Email not found', false)
 			return
 		}
 

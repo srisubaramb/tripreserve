@@ -1,7 +1,8 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addUser } from "./userSlice";
 import AuthPage from "./AuthPage";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const FormInput = ({type, name, id, placeholder, value}) => {
 	return <input
@@ -30,7 +31,10 @@ const Form = ({funcToCall}) => (
 )
 function SignUp() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [signupStatus, setSignupStatus] = useState({msg : '' , status : false})
+	const usersList = useSelector(state => state.users.users)
+	console.log(usersList)
 	function userSignup(e) {
 		e.preventDefault()
 		const userName = e.target.username.value
@@ -39,14 +43,26 @@ function SignUp() {
 		const confirmPassword = e.target.confirmPassword.value
 		if(userName == '') {
 			showStatus("UserName can't be empty")
+			return
 		}
 		if(password != confirmPassword) {
 			showStatus('Confirm Password must match!')
 			return
 		}
-		const userObj = {userName, email, password}
-		console.log(userObj)
-		dispatch(addUser(userObj))
+		const isAlreadyAUser = usersList.find(user => user.email == email || user.userName == userName)
+		if(isAlreadyAUser) {
+			if(isAlreadyAUser.userName == userName) {
+				showStatus('Username is already taken')
+			} else if(isAlreadyAUser.email == email) {
+				showStatus('Email already exists')
+			}
+			return
+		} else {
+			const userObj = {userName, email, password}
+			dispatch(addUser(userObj))
+			navigate('/login')
+		}
+		
 	}
 	function showStatus(msg, status) {
 		setSignupStatus({ msg, status })

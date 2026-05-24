@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Article = ({icon, title}) => {
 	return (
-		<Link className="flex flex-col gap-y-4  items-start p-2 px-4 rounded-xl group hover:border-3 hover:border-primary  ">
+		<Link to="\" className="flex flex-col gap-y-4  items-start p-2 px-4 rounded-xl group hover:border-3 hover:border-primary  ">
 			{icon}
 			<h2 className="text-3xl">{title}</h2>
 			<p className="text-xl flex items-center">Learn More<ArrowRight className="group-hover:translate-x-4"/></p>

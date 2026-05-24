@@ -22,7 +22,7 @@ function AuthPage({Form, status, funcToCall, heading}) {
 				</div>
 			</div>
 			<div className="w-[100%] flex flex-col items-center justify-center gap-y-2">
-				<p className={`px-4 text-white rounded-lg  ${status.msg == '' ? 'hidden ': status.status ? "" : "bg-red-500"}`}>&bull;<span className='mx-2'>{status.msg}</span>&bull;</p>
+				<p className={`px-4 text-white rounded-lg  ${status.msg == '' ? 'hidden ': status.status ? "bg-green-500" : "bg-red-500"}`}>&bull;<span className='mx-2'>{status.msg}</span>&bull;</p>
 				<h2 className='capitalize text-3xl'>{heading}</h2>
 				<div className='w-[100%] px-4 max-w-[500px]'>
 					<Form funcToCall={funcToCall}/>

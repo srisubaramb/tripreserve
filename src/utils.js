@@ -52,4 +52,5 @@ function airlineCodeToDetails(code) {
 	const airline = airlines.find(data => data.id == code)
 	return airline
 }
+
 export {getFlights, filterAriports, currencyCodeToSymbol, airlineCodeToDetails, airlineCodeToName, airlineCodeToImage}
