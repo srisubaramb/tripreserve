@@ -3,7 +3,6 @@ import bgImage from './assets/bg-image-1.png'
 function AuthPage({Form, status, funcToCall, heading}) {
 	const location = useLocation()
 	const isInSignup = location.pathname == '/signup' 
-	console.log(status.msg)
 	return (
 		<div className="flex w-[100%] h-[93vh] overflow-hidden">
 			<div className="w-[100%] h-[100%] relative" >

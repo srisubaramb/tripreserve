@@ -1,5 +1,6 @@
 function Profile() {
-	const userObj = JSON.parse(sessionStorage.getItem('user'))
+	const userObj = JSON.parse(localStorage.getItem('user'))
+	console.log(userObj)
 	return (
 		<>
 			

@@ -20,9 +20,6 @@ function App() {
 	useEffect(() => {
 		localStorage.setItem('users', JSON.stringify(users))
 	} , [users])
-	useEffect(() => {
-		dispatch(setUsers(JSON.parse(localStorage.getItem('users')) || []))
-	} , [])
   return (
     <>
 		<BrowserRouter >
