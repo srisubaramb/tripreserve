@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://api.travelpayouts.com/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
