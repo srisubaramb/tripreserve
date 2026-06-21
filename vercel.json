@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/aviasales/:path*",
-      "destination": "https://api.aviasales.ru/:path*"
+      "source": "/api/(.*)",
+      "destination": "https://api.travelpayouts.com/$1"
     }
   ]
 }
