@@ -30,9 +30,12 @@ function Search() {
 	}
 	async function handleSubmit(e) {
 		e.preventDefault()
-		const response = await getFlights(searchData)
-		dispatch(setCurrency(response.currency))
-		setFlights(response)
+		//since we have the one way searching only
+		if(searchData.oneWay) {
+			const response = await getFlights(searchData)
+			dispatch(setCurrency(response.currency))
+			setFlights(response)
+		}
 		
 	}
 	return (
@@ -78,7 +81,14 @@ function Search() {
 			</form>
 		</div>
 		</div>
-		{flights.data.length > 0 && <FlightsDisplay data={flights.data} currency={flights.currency} searchData={searchData}/>}
+		{ <FlightsDisplay data={flights.data} currency={flights.currency} searchData={searchData}/>}
+		{!searchData.oneWay && (
+			<div className="flex justify-center">
+				<div className="w-fit text-center text-xl bg-red-400 text-white p-1 px-2 rounded-3xl">
+					Sorry for the inconvenience, currently return trip search is not supported.
+				</div>
+			</div>
+		)}
 		</>
 	)
 }

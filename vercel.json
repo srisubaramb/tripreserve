@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/aviasales/:path*",
+      "destination": "https://api.aviasales.ru/:path*"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import { removeFlightFromFav, saveFlightToFav } from "./flightSlices"
 function FlightsDisplay({data,currency, isFav}) {
 	const safeValue = (value) => isNaN(value) ? 'XX' : value
 	const dispatch = useDispatch()
+	var isDataThere = data.length > 0
 	function saveFlight(index) {
 		//condition to handle the mock flight result
 		if(data[index].departure_at == '')  {
@@ -15,7 +16,7 @@ function FlightsDisplay({data,currency, isFav}) {
 	}
 	return (
 		<div className="flex flex-col gap-y-2 w-[90%] mx-auto my-2">
-			{data.map((flight,index) => {
+			{ isDataThere && data.map((flight,index) => {
 					const airlineDetails = airlineCodeToDetails(flight.airline)
 					const depatureDateTime = new Date(flight.departure_at)
 					const arivalTime = new Date(depatureDateTime)
@@ -59,6 +60,13 @@ function FlightsDisplay({data,currency, isFav}) {
 						</div>)
 				}				
 			) }
+			{!isDataThere && (
+			<div className="flex justify-center">
+				<div className="w-fit text-center text-xl bg-red-400 text-white p-1 px-2 rounded-3xl">
+					Flight data is currently not cached for these dates, or no flights are available.
+				</div>
+			</div>
+		)}
 		</div>
 	)
 }
