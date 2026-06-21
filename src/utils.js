@@ -2,14 +2,20 @@ const {VITE_token, VITE_id} = import.meta.env
 import airlines from './airlines.json'
 async function getFlights(searchData){
 	// Other parameter to work on &return_at=2023-08 &unique=false &sorting=price &direct=false &cy=usd &limit=30 &page=1&one_way=true
-	const url = `/api/flights?
-		origin=${searchData.from.iata}
-		&destination=${searchData.to.iata}
-		&departure_at=${searchData.depatureDate}
-		${!searchData.oneWay ? `&return_at=${searchData.returnDate}` : ''}
-		&currency=inr
-		&token=${VITE_token}
-		&one_way=${searchData.oneWay}`
+	const params = new URLSearchParams({
+	origin: searchData.from.iata,
+	destination: searchData.to.iata,
+	departure_at: searchData.depatureDate,
+	currency: 'inr',
+	token: VITE_token,
+	one_way: searchData.oneWay
+	});
+
+	if (!searchData.oneWay) {
+	params.append('return_at', searchData.returnDate);
+	}
+
+	const url = `/api/flights?${params.toString()}`;
 	console.log(url)
 	try{
 		const response = await fetch(url)
