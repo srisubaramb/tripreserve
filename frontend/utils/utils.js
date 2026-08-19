@@ -12,8 +12,8 @@ async function getFlights(searchData) {
   if (!searchData.oneWay) {
     params.append("return_at", searchData.returnDate);
   }
-
-  const url = `http://localhost:5000/api/flights?${params.toString()}`;
+  const API_URL = import.meta.env.VITE_API_URL;
+  const url = `${API_URL}/api/flights?${params.toString()}`;
   console.log(url);
   try {
     const response = await fetch(url);
