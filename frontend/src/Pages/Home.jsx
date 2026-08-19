@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import aeroplane from './assets/aeroplane.png'
+import aeroplane from '../assets/aeroplane.png'
 function Home() {
 	const Features = ({title, desc}) => {
 		return (

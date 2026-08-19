@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import bgImage from './assets/bg-image-1.png'
+import bgImage from '../src/assets/bg-image-1.png'
 function AuthPage({Form, status, funcToCall, heading}) {
 	const location = useLocation()
 	const isInSignup = location.pathname == '/signup' 

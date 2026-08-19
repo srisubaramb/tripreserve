@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Help from "./Help";
+import Help from "../src/Pages/Help";
 import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "./App";
+import { AuthContext } from "../src/App";
 import { LogOut, MenuIcon, X } from "lucide-react";
 
 const Nav = () => {
