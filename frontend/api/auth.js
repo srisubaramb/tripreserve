@@ -17,7 +17,7 @@ export async function loginUser(credentials) {
 	const response = await fetch(`${API_URL}/api/auth/login` , {
 		method : "POST",
 		headers : {
-			"Content-Type" : "applicaiton/json"
+			"Content-Type" : "application/json"
 		},
 		body : JSON.stringify(credentials)
 	})
