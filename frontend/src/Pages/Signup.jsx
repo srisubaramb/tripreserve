@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AuthPage from "../../components/AuthPage";
-import { addUser } from "../../store/userSlice";
+import { signupUser } from "../../api/auth";
 
-export const FormInput = ({ type, name, id, placeholder, value }) => {
+
+export const FormInput = ({ type, name, id, placeholder, value , ...props}) => {
   return (
     <input
+		{...props}
       type={type || undefined}
       name={name || undefined}
       id={id || undefined}
@@ -47,12 +48,9 @@ const Form = ({ funcToCall }) => (
   </form>
 );
 function SignUp() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [signupStatus, setSignupStatus] = useState({ msg: "", status: false });
-  const usersList = useSelector((state) => state.users.users);
-  console.log(usersList);
-  function userSignup(e) {
+  async function userSignup(e) {
     e.preventDefault();
     const userName = e.target.username.value;
     const email = e.target.email.value;
@@ -66,21 +64,21 @@ function SignUp() {
       showStatus("Confirm Password must match!");
       return;
     }
-    const isAlreadyAUser = usersList.find(
-      (user) => user.email == email || user.userName == userName,
-    );
-    if (isAlreadyAUser) {
-      if (isAlreadyAUser.userName == userName) {
-        showStatus("Username is already taken");
-      } else if (isAlreadyAUser.email == email) {
-        showStatus("Email already exists");
-      }
-      return;
-    } else {
-      const userObj = { userName, email, password };
-      dispatch(addUser(userObj));
-      navigate("/login");
-    }
+	try {
+		const data = await signupUser({
+			name : userName,
+			email : email,
+			password : password
+		})
+		localStorage.setItem("token" , data.token)
+		localStorage.setItem("user" , JSON.stringify(data.user))
+		showStatus("Account created successfully " , true)
+		setTimeout(() => {
+			navigate("/")
+		} , 1000)
+	} catch(error) {
+		showStatus(error.message, false);
+	}
   }
   function showStatus(msg, status) {
     setSignupStatus({ msg, status });

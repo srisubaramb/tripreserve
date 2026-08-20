@@ -1,52 +1,50 @@
 import { useContext, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/auth";
 import AuthPage from "../../components/AuthPage";
 import { AuthContext } from "../App";
 import { FormButton, FormInput } from "./Signup";
 
 function Login() {
-  const users = useSelector((state) => state.users.users);
   const [loginStatus, setLoginStatus] = useState({ msg: "", status: false });
   const navigate = useNavigate();
   const { setIsAuth } = useContext(AuthContext);
   const Form = ({ funcToCall }) => (
     <form onSubmit={(e) => funcToCall(e)} className="flex flex-col">
-      <FormInput type="email" name="email" id="email" placeholder="Email" />
+      <FormInput type="email" name="email" id="email" placeholder="Email"  autoComplete="email"/>
       <FormInput
         type="password"
         name="password"
         id="password"
         placeholder="Password"
+        autoComplete="current-password"
       />
       <FormButton type="submit" value="Login" />
     </form>
   );
-  function userLogin(e) {
+  async function userLogin(e) {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const foundUser = users.find((user) => user.email === email);
+    try {
+      const data = await loginUser({
+        email,
+        password,
+      });
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      showStatus("Login Successful", true);
 
-    if (!foundUser) {
-      showStatus("Email not found", false);
-      return;
+      console.log("You logged in");
+      setIsAuth(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } catch (error) {
+      showStatus(error.message, false);
     }
-
-    if (foundUser.password !== password) {
-      showStatus("Password is Wrong", false);
-      return;
-    }
-
-    localStorage.setItem("user", JSON.stringify(foundUser));
-
-    showStatus("Login Successful", true);
-
-    console.log("You logged in");
-    setIsAuth(true);
-    navigate("/");
   }
   function showStatus(msg, status) {
     setLoginStatus({ msg, status });

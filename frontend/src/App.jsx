@@ -1,5 +1,4 @@
-import { createContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./Pages/About";
 import "./App.css";
@@ -14,11 +13,6 @@ import SignUp from "./Pages/Signup";
 export const AuthContext = createContext(false);
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
-  useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
   return (
     <>
       <BrowserRouter>
