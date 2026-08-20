@@ -11,13 +11,12 @@ function Login() {
   const { setIsAuth } = useContext(AuthContext);
   const Form = ({ funcToCall }) => (
     <form onSubmit={(e) => funcToCall(e)} className="flex flex-col">
-      <FormInput type="email" name="email" id="email" placeholder="Email"  autoComplete="email"/>
+      <FormInput type="email" name="email" id="email" placeholder="Email"/>
       <FormInput
         type="password"
         name="password"
         id="password"
         placeholder="Password"
-        autoComplete="current-password"
       />
       <FormButton type="submit" value="Login" />
     </form>

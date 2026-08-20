@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext , useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthPage from "../../components/AuthPage";
 import { signupUser } from "../../api/auth";
@@ -49,6 +49,7 @@ const Form = ({ funcToCall }) => (
 );
 function SignUp() {
   const navigate = useNavigate();
+  const {setIsAuth} = useContext();
   const [signupStatus, setSignupStatus] = useState({ msg: "", status: false });
   async function userSignup(e) {
     e.preventDefault();
@@ -76,6 +77,7 @@ function SignUp() {
 		setTimeout(() => {
 			navigate("/")
 		} , 1000)
+		setIsAuth(true)
 	} catch(error) {
 		showStatus(error.message, false);
 	}
