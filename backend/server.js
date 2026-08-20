@@ -1,10 +1,12 @@
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
-import flightRoute from "./routes/flightRoutes.js";
-
+import flightRoutes from "./routes/flightRoutes.js";
+import authRoutes from "./routes/authRoutes.js"
+import ConnectDB from "./config/db.js";
 const app = express();
-
+//connecting to db
+ConnectDB();
 //middlewares
 app.use(
   cors({
@@ -13,8 +15,8 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/api", flightRoute);
-
+app.use("/api", flightRoutes);
+app.use("/api/auth" , authRoutes)
 app.get("/api/health", (req, res) => {
   res.json({
     success: true,
