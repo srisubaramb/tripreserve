@@ -1,6 +1,7 @@
 import { useContext , useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthPage from "../../components/AuthPage";
+import { AuthContext } from "../App";
 import { signupUser } from "../../api/auth";
 
 
@@ -49,7 +50,7 @@ const Form = ({ funcToCall }) => (
 );
 function SignUp() {
   const navigate = useNavigate();
-  const {setIsAuth} = useContext();
+  const {setIsAuth} = useContext(AuthContext);
   const [signupStatus, setSignupStatus] = useState({ msg: "", status: false });
   async function userSignup(e) {
     e.preventDefault();
