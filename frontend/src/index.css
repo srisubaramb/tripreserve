@@ -7,6 +7,7 @@
 	--font-roboto: "Roboto Mono", monospace;
 	--font-arial : "Arial", sans-serif;
 	--color-primary: #ffd600;
+	--color-background : #f5f6f7;
 }
 body {
 	background-color: #f5f6f7;

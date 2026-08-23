@@ -11,6 +11,7 @@ import Profile from "./Pages/Profile";
 import Search from "./Pages/Search";
 import SignUp from "./Pages/Signup";
 import Footer from "../components/Footer";
+import { FloatingChat } from "../components/FloatingChat";
 export const AuthContext = createContext(false);
 function App() {
 	// checking the token is expired or not
@@ -38,7 +39,7 @@ function App() {
         <BrowserRouter>
           <AuthContext.Provider value={{ isAuth, setIsAuth }}>
             <Nav />
-            <main className="flex-1">
+            <main className="flex-1 flex flex-col">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
@@ -49,6 +50,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/login" element={<Login />}></Route>
               </Routes>
+			  <FloatingChat />
             </main>
               <Footer />
           </AuthContext.Provider>
