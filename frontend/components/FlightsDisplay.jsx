@@ -71,7 +71,7 @@ function FlightsDisplay({ data, currency, isFav }) {
                   View Flight
                 </a>
                 {!isFav ? (
-                  <button onClick={() => saveFlight(index)}>Save</button>
+                  <button onClick={() => saveFlight(index)} className="active:bg-primary px-3 py-1 rounded-xl">Save</button>
                 ) : (
                   <button onClick={() => dispatch(removeFlightFromFav(index))}>
                     Remove
