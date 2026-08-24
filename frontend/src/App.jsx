@@ -12,6 +12,7 @@ import Search from "./Pages/Search";
 import SignUp from "./Pages/Signup";
 import Footer from "../components/Footer";
 import { FloatingChat } from "../components/FloatingChat";
+import Analytics from "./Pages/Analytics";
 export const AuthContext = createContext(false);
 function App() {
 	// checking the token is expired or not
@@ -49,6 +50,7 @@ function App() {
                 <Route path="/dashboard" element={<Profile />}></Route>
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/login" element={<Login />}></Route>
+				<Route path="/analytics" element={<Analytics />} />
               </Routes>
 			  <FloatingChat />
             </main>

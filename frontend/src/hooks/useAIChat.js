@@ -1,4 +1,5 @@
 import {useState} from "react"
+import { handleChat } from "../../api/ai";
 export function useAIChat(){
 	const [messages, setMessages] = useState([{
     role: "ai",
@@ -11,17 +12,7 @@ export function useAIChat(){
 	setMessages(newHistory)
 	setIsLoading(true)
 	try{
-		const respone = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/chat` , {
-			method : "POST",
-			headers : {
-				"Content-Type" : "application/json"
-			},
-			body : JSON.stringify({
-				message : userMessage,
-				history : newHistory
-			})
-		})
-		const data = await respone.json()
+		const data = await handleChat(userMessage , newHistory)
 		setMessages(pervMessage => [...pervMessage , {role : "ai" , content : data.reply}])
 	} catch(error) {
 		setMessages([

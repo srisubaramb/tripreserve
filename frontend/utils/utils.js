@@ -25,7 +25,6 @@ async function getFlights(searchData) {
     return data;
   } catch (e) {
     throw new Error(`Error is fetching flights: ${e}`);
-    return {};
   }
 }
 function filterAriports(city, airports) {
